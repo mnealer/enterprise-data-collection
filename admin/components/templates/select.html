@@ -1,0 +1,17 @@
+<%!
+from typing import List, Tuple
+%>
+
+<%def name="Dropdown(items: List[Tuple[str, str]], id_: str, required=False)">
+<div class="field">
+  <div class="control">
+    <div class="select is-fullwidth ${'is-danger' if required else ''}">
+      <select id="${id_}" name="${id_}" ${'required' if required else ''}>
+        % for value, display in items:
+        <option value="${value}">${display}</option>
+        % endfor
+      </select>
+    </div>
+  </div>
+</div>
+</%def>

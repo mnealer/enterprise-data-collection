@@ -1,0 +1,13 @@
+<%!
+from typing import Optional
+%>
+
+<%def name="TextInput(id_: str, label: str, placeholder:str, required: Optional[bool]=False)">
+<div class="field">
+  <label class="label" for="${id_}">${label}</label>
+  <div class="control">
+    <input class="input ${'is-danger' if required else ''}" type="text" id="${id_}" name="${id_}" placeholder="${placeholder}" ${'required' if required else ''}>
+  </div>
+  <p class="help is-danger" style="${'display: none' if required else ''}">This field is required</p>
+</div>
+</%def>
