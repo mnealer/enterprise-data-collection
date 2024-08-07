@@ -1,0 +1,19 @@
+<nav class="breadcrumb">
+    <ul>
+        % for item in breadcrumbs
+        ${breadcrumb_item(url=item['url'], icon=item['icon'], is_last=loop.last}
+        % endfor
+    </ul>
+</nav>
+
+
+<%def name="breadcrumb_item()">
+    <li class="${'is-active' if is-last}">
+        <a href="${url}">
+            <span class="icon is-small">
+                <i class="fas ${icon}"></i>
+            </span>
+            <span>${title}</span>
+        </a>
+    </li>
+</%def>

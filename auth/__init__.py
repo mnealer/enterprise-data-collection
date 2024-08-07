@@ -2,7 +2,7 @@ from settings import max_age
 from fastapi import Request
 import datetime
 import hashlib
-from models import Session, Users
+from auth.models import Session, Users
 
 
 class BaseUser:

@@ -1,0 +1,13 @@
+<div class="column is-narrow">
+    <div class="panel is-primary">
+        <p class="panel-heading">tables</p>
+        $ for model in models
+        <a class="panel-block" href="/admin/model/${model}/table/view">
+            <span class="panel-icon">
+                <i class="fas fa-data"></i>
+            </span>
+            ${model}
+        </a>
+        $ endfor
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<nav class="navbar is-primary has-shadow" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item">
+      <img src="/admin/images/fastapi-white.svg" alt="FastAPI Admin"/>
+      <span style="margin-left: 10px">FastAPI Admin</span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+          <div>${username}</div>
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" href="/auth/logout">
+            <strong>Logout</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

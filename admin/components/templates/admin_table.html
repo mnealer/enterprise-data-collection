@@ -1,0 +1,18 @@
+<%!
+from admin.components import TableComponent, AdminPaginationComponent
+%>
+<%
+table_obj = TableComponent(admin_obj, request)
+pagination = AdminPagination(request, current_page, page_count)
+<nav class="panel">
+    <p class="panel-heading"></p>
+    <div class="panel-block is-active">
+        <table class="table is-fullwidth">
+            ${table_obj.render_header()}
+            ${table_obj.render_body(table_data)}
+
+
+        </table>
+        ${pagination.render()}
+    </div>
+</nav>

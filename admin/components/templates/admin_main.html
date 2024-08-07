@@ -1,0 +1,21 @@
+<%!
+  from admin.components import WebComponent
+  from admin.components import AdminBreadCrumb
+%>
+<%
+crumbs = AdminBreadCrumb(request.url)
+%>
+<!DOCTYPE html>
+<html>
+  ${WebComponent.render_template('admin/components/template/admin_page_head.html'}
+  <body>
+  ${WebComponent.render_template('admin/components/template/admin_nav_bar.html', username=user.username)}
+    <div class="columns is-2">
+      ${WebComponent.render_template("admin/components/template/admin_side.html", model=admins["models"]}
+    </div>
+    <div class="column has-background-grey-lighter">
+     ${crumbs.render()}
+          <%block name="table_view"> </%block>
+    </div>
+  </body>
+</html>

@@ -14,22 +14,22 @@ async def update_session_expiry(request: Request):
 
 async def already_logged_in(request: Request):
     if request.user.is_authenticated:
-        raise AlreadyLoggedInException()
+        raise AlreadyLoggedInException(request)
     return True
 
 
 async def logged_in(request: Request, background_tasks: BackgroundTasks) -> bool:
     if not request.user.is_authenticated:
-        raise NotLoggedInException()
+        raise NotLoggedInException(request)
     background_tasks.add_task(update_session_expiry, request)
     return True
 
 
 async def admin_user(request: Request, background_tasks: BackgroundTasks) -> bool:
     if not request.user.is_authenticated:
-        raise NotLoggedInException()
+        raise NotLoggedInException(request)
     if "admin" not in request.auth or "super" not in request.auth:
-        raise PermissionFailedException("You need to be marked as an admin user to access this endpoint")
+        raise PermissionFailedException(["You need to be marked as an admin user to access this endpoint"])
     background_tasks.add_task(update_session_expiry, request)
     return True
 

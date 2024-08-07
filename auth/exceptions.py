@@ -6,7 +6,7 @@ Authentication custom exceptions and exception handlers
 
 
 class NotLoggedInException(Exception):
-    def __init__(self):
+    def __init__(self, request):
         pass
 
 
@@ -27,7 +27,7 @@ def already_logged_in_handler(request: Request, exc: AlreadyLoggedInException):
 
 def not_logged_in_handler(request: Request, exc: NotLoggedInException):
     """Redirect to the login page if login is required"""
-    return RedirectResponse("/auth")
+    return RedirectResponse(f"/auth?next={request.url}")
 
 
 def permission_failed_handler(request: Request, exc: PermissionFailedException):

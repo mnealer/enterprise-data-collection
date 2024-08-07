@@ -1,4 +1,5 @@
-from tortoise import fields, models
+from tortoise import fields
+from tortoise.models import Model
 from tortoise.contrib.pydantic import pydantic_model_creator
 
 
@@ -6,7 +7,7 @@ def default_scope():
     return ["authenticated"]
 
 
-class Users(models.Model):
+class Users(Model):
     """
     The User model
     """
@@ -21,14 +22,14 @@ class Users(models.Model):
     info = fields.JSONField(default=dict)
 
     class PydanticMeta:
-        exclude = ["password_hash"]
+        exclude = ["p_hash", "p_salt"]
 
 
 User_Pydantic = pydantic_model_creator(Users, name="User")
 UserIn_Pydantic = pydantic_model_creator(Users, name="UserIn", exclude_readonly=True)
 
 
-class Session(models.Model):
+class Session(Model):
 
     id = fields.IntField(primary_key=True)
     token = fields.CharField(max_length=128, unique=True, db_index=True)

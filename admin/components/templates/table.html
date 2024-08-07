@@ -1,0 +1,42 @@
+<%def name="table_header(model, list_display)">
+<thead>
+<tr>
+  % for item in list_display
+    <th>${item}</th>
+  % endfor
+  <th>Actions</th>
+</tr>
+</thead>
+</%def>
+
+<%def name="table_body(model, data, list_display)">
+<tbody>
+    % for record in data
+    <tr>
+      % for key in list_display
+         <td>${record[key]}</td>
+      % endfor
+         <td>${action_dropdown(id=record["id"], model=model)}</td>
+    </tr>
+    % endfor
+</tbody>
+</%def>
+
+<%def name="action_dropdown(id, model)">
+<div class="dropdown">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="actions-${model}-${id}">
+      <span>Actions</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="actions-${model}-${id}" role="menu">
+    <div class="dropdown-content">
+      <a href="/admin/model/${model}/record/${id}/edit" class="dropdown-item">Edit</a>
+      <a href="/admin/model/${model}/record/{id}/delete" class="dropdown-item">Delete</a>
+    </div>
+  </div>
+</div>
+<%/def>
