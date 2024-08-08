@@ -1,10 +1,24 @@
-<%def name="Field(name, field_display, help_text, validation_code)">
+<%def name="Field(label, field_display, help_text, validation_code)">
 <div class="field">
-    <label for="" class="label">${name}</label>
-    <div class="control">${field_display}</div>
+    <label for="" class="label">${label}</label>
+    <div class="control">${caller.body()}</div>
     <p class="help is-hidden is-danger">${help_text}</p>
 </div>
 <script type="text/python">
     ${validation_code}
 </script>
+</%def>
+
+<%def name="FormSelect(id, name, options, label, help_text, validation_code)">
+<%self:Field label="${label}" help_text="${help_text}" validation_code="${validation_code}">
+<div class="select">
+    <select name="${name}" id="${id}">
+        % for op in options
+        <option value="${op.value}" ${selected if op.selected}>${op.text}</option>
+        % endfor
+    </select>
+</div>
+
+</%self>
+
 </%def>
